@@ -9,30 +9,73 @@ This module is entirely synchronous right now, because `localStorage` is, but co
 ```javascript
 var Migrator = require('..')
 
+// In this example, our existing data looks like this.
+var persistedData = {
+
+  // Note the mandatory and reserved `meta` key,
+  // with a mandatory `version` number.
+  meta: {
+    version: 1
+  },
+
+  // All your data is held in your own structure
+  // Under the root `data` key.
+  data: {
+    foo: 'bar'
+  }
+}
+
 var migrator = new Migrator({
 
-  // Provide a function to retrieve your data
+  // Must provide a method to load existing data.
+  // Defaults to empty object ({})
   loadData: function() {
     return persistedData
   },
 
-  // Provide a function to persist your data
+  // Must provide a method to persist updated data
   setData: function(data) {
     persistedData = data
   },
 
-  // Provide an array of functions that take
-  // the data, and turn it into the next format in order.
   migrations: [
-    function(data) {
-      var result = {}
-      if (data.foo) {
-        result.foos = [data.foo]
+
+    // Each `migrate` function will be run in order.
+    // It will be passed the contents of the `data` key.
+    // The `meta` object and version will be updated automatically.
+    {
+      version: 1,
+      migrate: function(data) {
+        return data.config // Will error if run
       }
-      return result
     },
+    {
+      version: 2,
+      migrate: function(data) {
+        var result = {}
+        if (data.foo) {
+          result.foos = [data.foo]
+        }
+        return result
+      }
+    },
+
+    // Migrations do not need to be in order
+    // As long as their version keys are ordered.
+    {
+      version: 0,
+      migrate: function(data) {
+        var result = {}
+        if (data.foo) {
+          result.foo = data
+        }
+        return result
+      }
+    }
   ]
 })
 
-var updatedData = migrator.getData()
+// The result of `getData` is just your `data` key.
+// You can pretty much ignore the versioning once you're set up!
+var result = migrator.getData()
 ```
