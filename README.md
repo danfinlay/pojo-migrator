@@ -10,8 +10,9 @@ Originally built for storing configuration values in the [localStorage](https://
 
 This module is entirely synchronous right now, because `localStorage` is, but could be easily modified to suit different needs.
 
+This example is taken directly from our test file, but with annotations.
 ```javascript
-var Migrator = require('..')
+var Migrator = require('pojo-migrator')
 
 // In this example, our existing data looks like this.
 var persistedData = {
