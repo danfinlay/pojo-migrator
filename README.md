@@ -6,7 +6,7 @@ npm install pojo-migrator -S
 
 A simple utility for migrating data stored in a a simple pojo (Plan Ol' Javascript Object).
 
-Originally built for storing configuration values in the [localStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage) API, but could work with any object serialization protocol.
+Originally built for storing configuration values in the [localStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage) API, but could work with any synchronous object serialization protocol.
 
 This module is entirely synchronous right now, because `localStorage` is, but could be easily modified to suit different needs.
 
