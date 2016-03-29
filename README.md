@@ -78,4 +78,10 @@ var migrator = new Migrator({
 // The result of `getData` is just your `data` key.
 // You can pretty much ignore the versioning once you're set up!
 var result = migrator.getData()
+
+// After making changes, be sure to tell your migrator to `saveData`.
+// This will automatically persist with the method you've defined in your
+// `setData` method, but keeping the `meta` key up to date with the version.
+result.foos.push('baz')
+migrator.saveData(result)
 ```

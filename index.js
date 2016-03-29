@@ -6,6 +6,10 @@ function Migrator(opts) {
 
   this.data = this.loadData() || {}
   this.getData = function() { return this.data.data }
+  this.saveData = function(data) {
+    this.data.data = data
+    this.setData(this.data)
+  }
 
   this.migrateData()
 }

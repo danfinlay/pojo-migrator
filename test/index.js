@@ -2,7 +2,7 @@ var test = require('tape')
 var Migrator = require('..')
 
 test('migrates as expected', function(t) {
-  t.plan(3)
+  t.plan(4)
 
   var persistedData = {
     meta: {
@@ -55,6 +55,11 @@ test('migrates as expected', function(t) {
   t.ok(result.foo === undefined, 'foo is now undefined')
   t.equal(result.foos[0], 'bar', 'The value was exchanged')
   t.equal(result.foos[0], persistedData.data.foos[0], 'The migrations were persisted')
+
+  result.foos.push('baz')
+  migrator.saveData(result)
+
+  t.equal(persistedData.data.foos[1], 'baz', 'saveData persists updataed data')
 
 })
 
