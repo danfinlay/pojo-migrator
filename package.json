@@ -1,0 +1,28 @@
+{
+  "name": "pojo-migrator",
+  "version": "1.0.0",
+  "description": "A utility for migrating simple javascript object formats",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/flyswatter/pojo-migrator.git"
+  },
+  "keywords": [
+    "migration",
+    "javascript",
+    "pojo",
+    "migrator"
+  ],
+  "author": "Dan Finlay",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/flyswatter/pojo-migrator/issues"
+  },
+  "homepage": "https://github.com/flyswatter/pojo-migrator#readme",
+  "devDependencies": {
+    "tape": "^4.5.1"
+  }
+}
