@@ -1,4 +1,4 @@
-# Pojo Migrator
+# Pojo Migrator [![Build Status](https://travis-ci.org/flyswatter/pojo-migrator.svg?branch=master)](https://travis-ci.org/flyswatter/pojo-migrator)
 
 ```
 npm install pojo-migrator -S
